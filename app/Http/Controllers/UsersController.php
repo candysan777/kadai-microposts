@@ -84,5 +84,23 @@ class UsersController extends Controller
             'users' => $followers,
         ]);
     }
+    
+    public function favorites($id) //お気に入りの一覧を表示するための関数
+    {
+        //idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+        
+        //関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+        
+        //$userがお気に入りしている全ての「投稿」を、ページ区切りで、日付の降順に取得する
+        $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
+        
+        //お気に入り一覧ビューでそれらを表示
+        return view('users.favorites',[
+            'user' => $user,
+            'microposts' => $microposts,
+            ]);
+    }
 }
 
