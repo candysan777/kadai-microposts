@@ -94,7 +94,7 @@ class UsersController extends Controller
         $user->loadRelationshipCounts();
         
         //$userがお気に入りしている全ての「投稿」を、ページ区切りで、日付の降順に取得する
-        $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
+        $microposts = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
         
         //お気に入り一覧ビューでそれらを表示
         return view('users.favorites',[

@@ -172,7 +172,7 @@ class User extends Authenticatable
             }
      }
     
-    
+    //中間テーブル(favoritesテーブル)のmicropost_idカラムに、お気に入り対象の投稿($micropost)のidが存在するか確認
     public function is_adding_favorite($micropostId)
     {
         return $this->favorites()->where('micropost_id',$micropostId)->exists();

@@ -21,8 +21,10 @@ class MicropostsController extends Controller
             ];
         }
 
-        // Welcomeビューでそれらを表示
+        // それ以外の場合はWelcomeビューで投稿の一覧を表示する
         return view('welcome', $data);
+        
+        
     }
     
     
